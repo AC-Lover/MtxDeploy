@@ -67,6 +67,13 @@ def _generate_value(generator_type: str) -> str:
         return secrets.token_hex(16)
     elif generator_type == "RAND_HEX_10":
         return secrets.token_hex(10)
+    elif generator_type == "RAND_HEX_13":
+        return secrets.token_hex(13)
+    elif generator_type == "SAFE_HEX_10":
+        val = secrets.token_hex(10)
+        if val[0].isdigit():
+            val = 'a' + val[1:]
+        return val
     else:
         raise ValueError(f"Unknown generator type: {generator_type}")
 

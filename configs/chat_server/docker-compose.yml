@@ -19,6 +19,7 @@ services:
       - "postgres.env"
     volumes:
       - "./data/postgres/data:/var/lib/postgresql/data"
+      - "./postgres_init:/docker-entrypoint-initdb.d"
     labels:
       - "traefik.enable=false"
     networks:
