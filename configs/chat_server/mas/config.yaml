@@ -3,7 +3,7 @@ account:
   password_change_allowed: true
   password_registration_enabled: true
 clients:
-- client_auth_method: client_secret_basic
+- client_auth_method: client_secret_post
   client_id: V_MAS_CLIENT_ID
   client_secret: V_MAS_CLIENT_SECRET
 database:
@@ -54,8 +54,8 @@ http:
   - fd00::/8
   - ::1/128
 matrix:
-  endpoint: https://s.chat.V_MAIN_DOMAIN/
-  homeserver: chat.V_MAIN_DOMAIN
+  endpoint: V_MAS_MATRIX_ENDPOINT
+  homeserver: V_MAIN_DOMAIN
   secret: V_MAS_MATRIX_SECRET
 passwords:
   enabled: true

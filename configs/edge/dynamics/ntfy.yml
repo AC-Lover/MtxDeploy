@@ -1,0 +1,15 @@
+http:
+  routers:
+    ntfy:
+      rule: "Host(`ntfy.V_MAIN_DOMAIN`)"
+      service: "ntfy"
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: "le"
+
+  services:
+    ntfy:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.9:80"

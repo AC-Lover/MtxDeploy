@@ -35,7 +35,7 @@ http:
         - "synapse-metrics-auth"
 
     matrix-https:
-      rule: "Host(`chat.V_MAIN_DOMAIN`) && ( PathPrefix(`/_matrix`) || PathPrefix(`/.well-known/matrix`))"
+      rule: "(Host(`chat.V_MAIN_DOMAIN`) || Host(`V_MAIN_DOMAIN`)) && ( PathPrefix(`/_matrix`) || PathPrefix(`/.well-known/matrix`))"
       service: "matrix-https"
       entryPoints:
         - "websecure"
