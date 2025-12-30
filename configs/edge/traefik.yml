@@ -11,10 +11,7 @@ entryPoints:
   # ---------------------------------------------- HTTP
   web:
     address: ":80"
-    http:
-      redirections:
-        entryPoint:
-          to: websecure
+    # Redirection handled by Nginx, but we keep this entrypoint for ACME challenges.
 
   # ---------------------------------------------- HTTPS
   websecure:

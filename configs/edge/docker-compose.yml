@@ -1,11 +1,11 @@
 services:
   traefik:
-    image: traefik:${TRAEFIK_VERSION:-v2.9}
+    image: traefik:${TRAEFIK_VERSION:-v3.6.5}
     container_name: edge-traefik
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - "8444:443"
+      - "8080:80"
     labels:
       - "traefik.enable=false"
     volumes:
@@ -13,13 +13,13 @@ services:
       - ./dynamics:/etc/traefik/dynamics
       - ./traefik.yml:/etc/traefik/traefik.yml
       - ./acme.json:/etc/traefik/acme.json
+    environment:
+      - DOCKER_API_VERSION=1.44
     networks:
       edge:
         ipv4_address: 10.0.0.2
         aliases:
           - traefik
-    
-
 
 networks:
   edge:
