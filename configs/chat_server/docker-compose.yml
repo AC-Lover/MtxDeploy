@@ -10,7 +10,6 @@ services:
       chat-local:
         ipv4_address: 10.1.0.2
 
-    
   postgres:
     image: "postgres:${POSTGRES_VERSION}"
     container_name: "chat_postgres"
@@ -25,7 +24,6 @@ services:
     networks:
       chat-local:
         ipv4_address: 10.1.0.3
-
 
   synapse:
     image: "matrixdotorg/synapse:${SYNAPSE_VERSION}"
@@ -51,7 +49,6 @@ services:
       edge:
         ipv4_address: 10.0.0.3
 
-
   matrix:
     image: "nginx:latest"
     container_name: "chat_matrix"
@@ -71,7 +68,6 @@ services:
       edge:
         ipv4_address: 10.0.0.4
 
-
   web:
     image: "nginx:latest"
     container_name: "chat_element"
@@ -86,7 +82,6 @@ services:
       edge:
         ipv4_address: 10.0.0.5
 
-
   coturn:
     image: "coturn/coturn:${COTURN_VERSION}"
     container_name: "chat_coturn"
@@ -99,7 +94,6 @@ services:
       - "49160-49200:49160-49200/udp"
       - "3478:3478"
       - "5349:5349"
-
 
   sliding-sync:
     image: "ghcr.io/matrix-org/sliding-sync:${SYNC_VERSION}"
@@ -119,9 +113,8 @@ services:
       edge:
         ipv4_address: 10.0.0.6
 
-
   mas:
-    image: "ghcr.io/element-hq/matrix-authentication-service:${MAS_VERSION}"
+    image: "ghcr.io/ac-lover/matrix-authentication-service:${MAS_VERSION}"
     container_name: "chat_mas"
     restart: "unless-stopped"
     env_file:
