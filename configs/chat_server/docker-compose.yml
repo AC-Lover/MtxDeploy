@@ -137,6 +137,18 @@ services:
       edge:
         ipv4_address: 10.0.0.7
 
+  synapse-admin:
+    image: awesometechnologies/synapse-admin
+    container_name: "chat_synapse_admin"
+    restart: unless-stopped
+    expose:
+      - 80
+    labels:
+      - "traefik.enable=false"
+    networks:
+      edge:
+        ipv4_address: 10.0.0.10
+
   ntfy:
     image: binwiederhier/ntfy
     container_name: "chat_ntfy"

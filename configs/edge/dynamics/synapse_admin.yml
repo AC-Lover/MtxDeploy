@@ -1,0 +1,15 @@
+http:
+  routers:
+    synapse-admin:
+      rule: "Host(`matrix-admin.V_MAIN_DOMAIN`)"
+      service: "synapse-admin"
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: "le"
+
+  services:
+    synapse-admin:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.10:80"
