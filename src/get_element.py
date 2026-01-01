@@ -28,11 +28,11 @@ def get_element(input_path: str) -> None:
     
     try:
         # Download Element web client (using specific version)
-        # Using Element v1.11.104
-        element_url = "https://github.com/element-hq/element-web/releases/download/v1.11.104/element-v1.11.104.tar.gz"
+        # Using Element v1.12.7
+        element_url = "https://github.com/element-hq/element-web/releases/download/v1.12.7/element-v1.12.7.tar.gz"
         
         # Download Element
-        print(f"Downloading Element web client v1.11.104 to {target_path}")
+        print(f"Downloading Element web client v1.12.7 to {target_path}")
         download_result = subprocess.run(
             ["wget", "-O", temp_archive_path, element_url],
             check=True,
