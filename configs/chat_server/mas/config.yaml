@@ -2,6 +2,19 @@ account:
   email_change_allowed: true
   password_change_allowed: true
   password_registration_enabled: true
+rate_limiting:
+  account_recovery_start:
+    capacity: 1000
+    interval: 1s
+  password_login:
+    capacity: 1000
+    interval: 1s
+  register:
+    capacity: 1000
+    interval: 1s
+  email_verification:
+    capacity: 1000
+    interval: 1s
 clients:
 - client_auth_method: client_secret_post
   client_id: V_MAS_CLIENT_ID

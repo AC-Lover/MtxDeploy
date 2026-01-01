@@ -109,6 +109,49 @@ turn_shared_secret: "V_TURN_SHARED_SECRET"
 turn_user_lifetime: 86400000
 turn_allow_guests: True
 
+## Rate Limiting ##
+rc_message:
+  per_second: 1000
+  burst: 1000
+
+rc_registration:
+  per_second: 100
+  burst: 100
+
+rc_login:
+  address:
+    per_second: 100
+    burst: 100
+  account:
+    per_second: 100
+    burst: 100
+  failed_attempts:
+    per_second: 100
+    burst: 100
+
+rc_admin_redaction:
+  per_second: 100
+  burst: 100
+
+rc_joins:
+  local:
+    per_second: 100
+    burst: 100
+  remote:
+    per_second: 100
+    burst: 100
+
+rc_key_requests:
+  per_second: 100
+  burst: 100
+
+rc_federation:
+  window_size: 1000
+  sleep_limit: 10
+  sleep_delay: 500
+  reject_limit: 50
+  concurrent: 3
+
 ## Registration ##
 enable_registration: false
 account_validity:
