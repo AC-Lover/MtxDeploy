@@ -38,7 +38,9 @@
         "layout": "bubble"
     },
     "element_call": {
-        "url": "https://s.chat.V_MAIN_DOMAIN",
-        "use_exclusively": true
+        "url": "https://call.chat.V_MAIN_DOMAIN",
+        "use_exclusively": true,
+        "participant_limit": 8,
+        "brand": "MatrixRTC"
     }
 }

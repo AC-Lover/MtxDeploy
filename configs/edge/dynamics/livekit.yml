@@ -1,0 +1,28 @@
+http:
+  routers:
+    livekit:
+      rule: "Host(`video.chat.V_MAIN_DOMAIN`)"
+      service: "livekit"
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: "le"
+
+    element-call:
+      rule: "Host(`call.chat.V_MAIN_DOMAIN`)"
+      service: "element-call"
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: "le"
+
+  services:
+    livekit:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.13:7880"
+    
+    element-call:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.14:80"

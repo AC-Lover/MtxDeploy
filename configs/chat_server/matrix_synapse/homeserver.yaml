@@ -100,10 +100,9 @@ url_preview_accept_language:
 
 
 turn_uris: 
-  - "turn:chat.V_MAIN_DOMAIN:3478?transport=udp"
-  - "turn:chat.V_MAIN_DOMAIN:3478?transport=tcp"
-  - "turns:chat.V_MAIN_DOMAIN:3478?transport=udp"
-  - "turns:chat.V_MAIN_DOMAIN:3478?transport=tcp"
+  - "turn:turn.chat.V_MAIN_DOMAIN:3478?transport=udp"
+  - "turn:turn.chat.V_MAIN_DOMAIN:3478?transport=tcp"
+  - "turns:turn.chat.V_MAIN_DOMAIN:443?transport=tcp"
 
 turn_shared_secret: "V_TURN_SHARED_SECRET"
 turn_user_lifetime: 86400000
@@ -304,6 +303,8 @@ redis:
 
 
 experimental_features:
+  msc3266_enabled: true
+  msc4143_enabled: true
   msc3861:
     enabled: true
 

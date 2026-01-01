@@ -24,6 +24,14 @@ http:
       tls:
         certResolver: "le"
 
+    matrix-fed-port:
+      rule: "Host(`V_MAIN_DOMAIN`) || Host(`chat.V_MAIN_DOMAIN`)"
+      service: "synapse-fed"
+      entryPoints:
+        - "matrix"
+      tls:
+        certResolver: "le"
+
     synapse-metrics:
       rule: "Host(`chat.V_MAIN_DOMAIN`) && PathPrefix(`/_synapse/metrics`)"
       service: "synapse-metrics"

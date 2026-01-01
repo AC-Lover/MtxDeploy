@@ -99,6 +99,9 @@ services:
       - "49160-49200:49160-49200/udp"
       - "3478:3478"
       - "5349:5349"
+    networks:
+      edge:
+        ipv4_address: 10.0.0.16
 
   sliding-sync:
     image: "ghcr.io/matrix-org/sliding-sync:${SYNC_VERSION}"
@@ -155,26 +158,63 @@ services:
     command:
       - serve
     environment:
-      - TZ=Asia/Tehran
-      - NTFY_BASE_URL=https://ntfy.${V_MAIN_DOMAIN}
+      - NTFY_BASE_URL=https://ntfy.V_MAIN_DOMAIN
+      - NTFY_CACHE_FILE=/var/cache/ntfy/cache.db
+      - NTFY_AUTH_FILE=/var/cache/ntfy/auth.db
+      - NTFY_AUTH_DEFAULT_ACCESS=deny-all
+      - NTFY_BEHIND_PROXY=true
+      - NTFY_ATTACHMENT_CACHE_DIR=/var/cache/ntfy/attachments
+      - NTFY_ENABLE_LOGIN=true
     volumes:
-      - "./data/ntfy/cache:/var/cache/ntfy"
-      - "./data/ntfy/config:/etc/ntfy"
-    expose:
-      - 80
-    healthcheck:
-      test: [ "CMD-SHELL", "wget -q --tries=1 http://localhost:80/v1/health -O - | grep -Eo '\"healthy\"\\s*:\\s*true' || exit 1" ]
-      interval: 60s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+      - ./ntfy/cache:/var/cache/ntfy
+      - ./ntfy/config:/etc/ntfy
     restart: unless-stopped
-    init: true
-    labels:
-      - "traefik.enable=false"
     networks:
       edge:
-        ipv4_address: 10.0.0.9
+        ipv4_address: 10.0.0.12
+
+  livekit:
+    image: livekit/livekit-server:latest
+    container_name: livekit
+    command: --config /config.yaml
+    volumes:
+      - ./livekit/livekit.yaml:/config.yaml
+    restart: unless-stopped
+    ports:
+      - 7881:7881
+      - 50000-50200:50000-50200/udp
+    networks:
+      edge:
+        ipv4_address: 10.0.0.13
+
+  element-call:
+    image: ghcr.io/element-hq/element-call:latest
+    container_name: element-call
+    volumes:
+      - ./element_call/config.json:/usr/share/nginx/html/config.json
+    restart: unless-stopped
+    networks:
+      edge:
+        ipv4_address: 10.0.0.14
+
+  lk-jwt-service:
+    image: ghcr.io/element-hq/lk-jwt-service:0.2.2
+    container_name: lk-jwt-service
+    environment:
+      - LIVEKIT_URL=wss://video.chat.V_MAIN_DOMAIN
+      - LIVEKIT_KEY=V_LIVEKIT_API_KEY
+      - LIVEKIT_SECRET=V_LIVEKIT_API_SECRET
+      - MATRIX_URL=http://synapse:8008
+    extra_hosts:
+      - "V_MAIN_DOMAIN:10.0.0.2"
+      - "chat.V_MAIN_DOMAIN:10.0.0.2"
+      - "video.chat.V_MAIN_DOMAIN:10.0.0.2"
+    restart: unless-stopped
+    networks:
+      edge:
+        ipv4_address: 10.0.0.15
+      chat-local:
+        ipv4_address: 10.1.0.15
 
   mail:
     container_name: chat_test_mail

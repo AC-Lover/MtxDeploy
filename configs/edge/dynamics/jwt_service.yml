@@ -1,0 +1,33 @@
+http:
+  middlewares:
+    cors-headers:
+      headers:
+        accessControlAllowMethods:
+          - "GET"
+          - "OPTIONS"
+          - "PUT"
+          - "POST"
+        accessControlAllowHeaders:
+          - "Content-Type"
+          - "Authorization"
+        accessControlAllowOriginList:
+          - "*"
+        accessControlMaxAge: 100
+        addVaryHeader: true
+
+  routers:
+    lk-jwt-service:
+      middlewares:
+        - "cors-headers"
+      rule: "Host(`livekit.chat.V_MAIN_DOMAIN`)"
+      service: "lk-jwt-service"
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: "le"
+
+  services:
+    lk-jwt-service:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.0.15:8080"

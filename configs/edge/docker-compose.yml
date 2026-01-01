@@ -6,6 +6,7 @@ services:
     ports:
       - "8444:443"
       - "8080:80"
+      - "8448:8448"
     labels:
       - "traefik.enable=false"
     volumes:

@@ -1,0 +1,15 @@
+tcp:
+  routers:
+    turn-tls:
+      rule: "HostSNI(`turn.chat.V_MAIN_DOMAIN`)"
+      service: "turn-tcp"
+      entryPoints:
+        - "websecure"
+      tls:
+        certResolver: "le"
+
+  services:
+    turn-tcp:
+      loadBalancer:
+        servers:
+          - address: "10.0.0.16:3478"

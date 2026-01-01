@@ -20,6 +20,12 @@ entryPoints:
       tls:
         certResolver: le
 
+  matrix:
+    address: ":8448"
+    http:
+      tls:
+        certResolver: le
+
 
 
 certificatesResolvers:
