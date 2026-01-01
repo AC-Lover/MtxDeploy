@@ -1,6 +1,8 @@
 # MtxDeploy
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)  
+[**فارسی**](README.fa.md) | [**English**](README.md)
+
 A project to set up a Matrix server using Docker, Traefik, and Synapse with full delegation and MAS authentication.
 
 ---
@@ -17,7 +19,7 @@ This project provides a complete Matrix homeserver setup. It features:
 
 > [!NOTE]
 > **Email Verification Bypass:**
-> Due to internet restrictions in some regions (like Iran), the included MAS image is patched to bypass email verification. You can enter any code (e.g., `111111`) to verify the email.
+> Due to internet restrictions in some regions (like Iran), the included MAS image is patched to bypass email verification. You must enter **`111111`** (or any 6-digit code consisting of 1s) to verify the email.
 >
 > **Using Official MAS:**
 > If you prefer the official image, edit `configs/chat_server/docker-compose.yml` and change the MAS image to:
@@ -95,6 +97,10 @@ Assuming your main domain is `example.com`:
 
 ### Credits
 Special thanks to [wiiz-ir](https://github.com/wiiz-ir/matrix-2-scripts) for the original scripts and inspiration.
+
+### Support
+If you find this project useful, you can support me here:
+[Donate via NowPayments](https://nowpayments.io/donation/ACLover)
 
 ---
 
