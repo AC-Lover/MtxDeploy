@@ -1,4 +1,5 @@
 {
+    "permalinkPrefix": "https://chat.V_MAIN_DOMAIN",
     "default_server_config": {
         "m.homeserver": {
             "base_url": "https://chat.V_MAIN_DOMAIN",
