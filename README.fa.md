@@ -1,4 +1,4 @@
-# پروژه Matrix نسخه ۲
+# MtxDeploy
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)  
 پروژه‌ای برای راه‌اندازی سرور Matrix با استفاده از داکر، Traefik و Synapse با قابلیت Delegation کامل و احراز هویت MAS.
@@ -14,6 +14,14 @@
 *   **Traefik**: ریورس پروکسی با مدیریت خودکار SSL.
 *   **Ntfy**: سیستم نوتیفیکیشن UnifiedPush.
 *   **Synapse Admin**: پنل مدیریت گرافیکی سرور.
+
+> [!NOTE]
+> **بایپس وریفای ایمیل:**
+> به دلیل محدودیت‌های اینترنتی در برخی کشورها (مانند ایران)، نسخه MAS استفاده شده در این پروژه پچ شده است تا وریفای ایمیل را دور بزند. کافیست هنگام درخواست کد، هر عددی (مثلاً `111111`) وارد کنید.
+>
+> **استفاده از نسخه رسمی:**
+> اگر می‌خواهید از ایمیج رسمی استفاده کنید، فایل `configs/chat_server/docker-compose.yml` را ویرایش کرده و ایمیج MAS را به شکل زیر تغییر دهید:
+> `image: "ghcr.io/matrix-org/matrix-authentication-service:${MAS_VERSION}"`
 
 ---
 
@@ -82,6 +90,11 @@ docker compose up -d
 | **Ntfy** | `https://ntfy.example.com` | نوتیفیکیشن |
 | **Admin Panel** | `https://matrix-admin.example.com` | مدیریت سرور |
 | **Traefik** | `https://to.chat.example.com` | داشبورد پروکسی |
+
+---
+
+### تشکر و قدردانی
+با تشکر ویژه از [wiiz-ir](https://github.com/wiiz-ir/matrix-2-scripts) بابت اسکریپت‌های اولیه و الهام‌بخشی.
 
 ---
 

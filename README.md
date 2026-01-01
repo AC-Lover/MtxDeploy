@@ -1,4 +1,4 @@
-# Matrix Version 2 Project
+# MtxDeploy
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)  
 A project to set up a Matrix server using Docker, Traefik, and Synapse with full delegation and MAS authentication.
@@ -14,6 +14,14 @@ This project provides a complete Matrix homeserver setup. It features:
 *   **Traefik**: Reverse proxy with automatic SSL management.
 *   **Ntfy**: UnifiedPush provider for notifications.
 *   **Synapse Admin**: Web GUI for server administration.
+
+> [!NOTE]
+> **Email Verification Bypass:**
+> Due to internet restrictions in some regions (like Iran), the included MAS image is patched to bypass email verification. You can enter any code (e.g., `111111`) to verify the email.
+>
+> **Using Official MAS:**
+> If you prefer the official image, edit `configs/chat_server/docker-compose.yml` and change the MAS image to:
+> `image: "ghcr.io/matrix-org/matrix-authentication-service:${MAS_VERSION}"`
 
 ---
 
@@ -82,6 +90,11 @@ Assuming your main domain is `example.com`:
 | **Ntfy** | `https://ntfy.example.com` | Notifications |
 | **Admin Panel** | `https://matrix-admin.example.com` | Server Management |
 | **Traefik** | `https://to.chat.example.com` | Proxy Dashboard |
+
+---
+
+### Credits
+Special thanks to [wiiz-ir](https://github.com/wiiz-ir/matrix-2-scripts) for the original scripts and inspiration.
 
 ---
 
